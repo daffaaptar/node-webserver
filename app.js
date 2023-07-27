@@ -2,17 +2,39 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+//ejs
+app.set('view engine','ejs')
+
 
 app.get('/', (req, res) => {
-    res.sendFile('./index.html', { root: __dirname })
+  
+    const mahasiswa = [
+        {
+            nama: 'Daffa Apta Pratama',
+            email: 'daffa@gmail.com',
+        },
+        {
+            nama: 'Galung Ramadun',
+            email: 'galung@gmail.com',
+        },
+        {
+            nama: 'Riki Maulani',
+            email: 'iki@gmail.com',
+        },
+    ]
+    res.render('index', { 
+        nama: 'Daffa Apta Pratama', 
+        title: 'Halaman Utama',
+        mahasiswa,
+    })
 })
 
 app.get('/about', (req, res) => {
-    res.sendFile('./about.html', { root: __dirname })
+    res.render('about', { title: 'About'})
 })
 
 app.get('/contact', (req, res) => {
-    res.sendFile('./contact.html', { root: __dirname })
+    res.render('contact', { title: 'Contact'})
 })
 
 app.get('/product/:id', (req, res) =>{
