@@ -1,10 +1,19 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const morgan = require('morgan')
 
 //ejs
 app.set('view engine','ejs')
 
+//Built-in  Middleware
+app.use(express.static('public'))
+
+app.use((req, res, next) => {
+    console.log('Time: ', Date.now())
+    next()
+})
+app.use(morgan('dev'))
 
 app.get('/', (req, res) => {
   
