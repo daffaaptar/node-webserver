@@ -1,7 +1,8 @@
 const express = require('express')
+const { loadContact, findContact } = require('./utils/contacts')
 const app = express()
 const port = 3000
-const morgan = require('morgan')
+
 
 //ejs
 app.set('view engine','ejs')
@@ -13,7 +14,6 @@ app.use((req, res, next) => {
     console.log('Time: ', Date.now())
     next()
 })
-app.use(morgan('dev'))
 
 app.get('/', (req, res) => {
   
@@ -43,7 +43,16 @@ app.get('/about', (req, res) => {
 })
 
 app.get('/contact', (req, res) => {
-    res.render('contact', { title: 'Contact'})
+    const contacts = loadContact()
+    res.render('contact', { title: 'Contact',
+    contacts,
+})
+})
+app.get('/contact/:nama', (req, res) => {
+    const contact = findContact(req.params.nama)
+    res.render('detail', { title: 'Contact',
+    contact,
+})
 })
 
 app.get('/product/:id', (req, res) =>{

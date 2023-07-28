@@ -33,8 +33,47 @@
         </div>
       </div>
     </nav>
-    
+    <div class="cont p-5">
+      <div class="row">
+        <div class="col-md-20">
+          <h4 style="text-align: center; margin-bottom: 25px;">Daftar Contact</h4>
+          <table class ="table margin">
+            <thead>
+              <tr >
+                <th scope="col">No</th>
+                <th scope="col">Nama</th>
+                <th scope="col">No HP</th>
+                <th scope="col">Aksi</th>
+              </tr>
+            </thead>
+            <tbody >
+              <% if (contacts.length === 0) { %>
+                <tr>
+                  <td colspan="4">
+                    <div class="alert alert-danger" role="alert">
+                      Data Kontak Masih Kosong!
+                      </div>
+                  </td>
+                </tr>
+              <% } %>
+              <% let no = 1; %> <% contacts.forEach(contact => { %>
+                <tr>
+                  <th scope="row"><%= no++ %></th>
+                  <td><%= contact.nama %></td>
+                  <td><%= contact.email %></td>
+                  <td>
+                    <a href="/contact/<%= contact.nama %>" class="btn btn-success badge rounded-pil">Detail</a>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
     
     <!-- End Example Code -->
+    <!--BS Icon-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   </body>
 </html>
