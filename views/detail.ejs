@@ -30,14 +30,16 @@
               </div> <a href="/contact" class="alert-link">Kembali ke daftar</a>
          
         <% } else {%>
-       <div class="card" style="width: 18rem;">
+       <center><div class="card" style="width: 18rem; margin-top: 15px;">
             <div class="card-body">
               <h5 class="card-title"><%= contact.nama %></h5>
               <h6 class="card-subtitle mb-2 text-body-secondary"><%= contact.nohp %></h6>
               <p class="card-text"><%= contact.email %></p>
-              <a href="/contact" class="card-link">&laquo;Kembali ke daftar kontak</a>
+              <a href="/contact/edit/<%= contact.nama %>" class="btn btn-info badge mb-2">Edit</a> 
+              <a href="/contact/delete/<%= contact.nama %>" class="btn btn-danger badge mb-2" onclick="return confirm('Tekan OK untuk hapus data!')">Hapus</a> <br>
+              <a href="/contact" class="card-link d-block mt-1">&laquo;Kembali ke daftar kontak</a>
             </div>
           </div>
     </div>
-</div>
+</div></center>
 <% } %>
